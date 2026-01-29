@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beauty Kurly|login</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+  <script src="js/script_login.js"></script>
+</head>
+<body>
+  <div class="login_container">
+  <div class="top_icons">
+    <i class="fas fa-times close_btn"></i>
+  </div>
+
+
+  <div class="logo">
+    <img src="images/logo.jpg" alt="컬리로고">
+  </div>
+
+
+  <form class="login_form" action="/login" method="POST">
+    <div class="input_group">
+      <input type="text" placeholder="아이디" id="username">
+    </div>
+
+    <div class="input_group password_group">
+      <input type="password" placeholder="비밀번호" id="password">
+        <i class="fas fa-eye-slash toggle_password"></i>
+    </div>
+
+
+  <div class="checkbox_group">
+    <input type="checkbox" id="save_id">
+      <label for="save_id">아이디 저장</label>
+  </div>
+
+    <button type="button" class="login_btn">로그인</button>
+    <button type="button" class="signup_btn">회원가입</button>
+
+
+  <div class="find_info">
+    <button type="button">아이디 찾기</button>
+    <span>|</span>
+    <button type="button">비밀번호 찾기</button>
+  </div>
+</form>
+  <hr>
+
+  <p class="social_text">네이버, 카카오로 <strong>간편하게</strong> 시작하세요</p>
+    <div class="social_buttons">
+      <button class="naver_btn"><img src="images/naver.jpg" alt="naver" width="30px" height="30px"> 네이버로 시작하기</button>
+      <button class="kakao_btn"><img src="images/kakao.jpg" alt="kakao" width="30px" height="30px"> 카카오로 시작하기</button>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+* {margin: 0;  padding: 0;}
+body {font-family: normal 16px/1.5em 'Pretendard', sans-serif; width: 395px; margin: 0 auto; background: #f9f9f9;}
+
+.cart_header {display: flex; justify-content: space-between; align-items: center; margin: 0; padding: 12px 16px; background-color: #fff; border-bottom: 1px solid #ddd; width: 100%; box-sizing: border-box;}
+.header_left {display: flex; align-items: center; gap: 15px;}
+.header_left a { color: #000; font-size: 22px; text-decoration: none;}
+.header_title { font-size: 18px; color: #000;}
+.header_right { display: flex; align-items: center; gap: 15px;}
+.header_right a { color: #000; font-size: 20px; text-decoration: none;}
+
+
+.delivery_info { padding: 12px 16px; background: #fff; }
+
+.delivery_tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background: #e8e8e8;
+  color: #9344CB;
+  font-weight: 600;
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+.delivery_address {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  margin-bottom: 6px;
+  gap: 8px;
+}
+
+.delivery_address span { flex: 1; line-height: 1.4; word-break: break-word;}
+.delivery_address .btn_change {flex-shrink: 0; background-color: #fff; border: 1px solid #999; border-radius: 5px; color: #000;font-weight: 600; cursor: pointer; padding: 5px 10px; font-size: 12px;}
+.free_delivery {font-size: 12px; margin-bottom: 6px;}
+.delivery_range { background: #e8e8e8; width: 100%; height: 6px; border-radius: 4px; position: relative;
+}
+.delivery_progress { height: 100%; background: #9344CB; border-radius: 4px;}
+
+
+.cart_tabs { display: flex; background: #fff; margin-top: 8px; border-radius: 8px;  overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.1);}
+.cart_tabs .tab { flex: 1; padding: 8px 0; text-align: center; font-size: 14px; border: none; background-color: #fff;  cursor: pointer; transition: all 0.2s ease; color: #555; display: inline-flex; justify-content: center; align-items: center; gap: 4px;}
+.cart_tabs .tab.active { color: #000; font-weight: 600; border-bottom: 2px solid #999; background-color: #fff;}
+.cart_tabs .tab:not(.active):hover { background: #f4f4f4;}
+.tab .item_count { margin-left: 4px; color: #fff; background: #9344CB; font-size: 10px; padding: 2px 5px;
+border-radius: 10px;}
+

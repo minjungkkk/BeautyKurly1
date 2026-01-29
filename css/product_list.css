@@ -1,0 +1,344 @@
+@charset "utf-8";
+
+.logo img {height: 30px; width: 60px; display: block;}
+.header_right i {margin-left: 15px; margin-top: 5px; font-size: 20px; color: #000; }
+
+body {font-family: normal 16px/1.5em 'Pretendard', sans-serif; margin: 0;}
+
+.header_wrap { display: flex; justify-content: space-between; padding: 16px 20px;}
+
+.sub_menu_wrap {overflow-x: auto; -webkit-overflow-scrolling: touch; background: #fff;  border-bottom: 1px solid #eee;}
+.sub_menu_list { display: flex; padding: 10px 0; margin: 0 10px; list-style: none; gap: 12px;}
+.sub_menu_list li { flex: 1 ; text-align: center; padding: 0 4px; font-size: 14px; white-space: nowrap; box-sizing: border-box; letter-spacing: -0.5px; word-spacing: -1px;}
+.sub_menu_list li .highlight { color: #9344cb; font-weight: 600;}
+
+
+.icon_menu_row { display: grid; grid-template-columns: repeat(5, 1fr); text-align: center; padding: 8px; gap: 4px;}
+.icon_item {cursor: pointer; padding: 5px; -webkit-tap-highlight-color: transparent;}
+.icon_item i {width: 36px; height: 36px; line-height: 36px; border-radius: 12px; background: #F6F2F9; color: #57047D; font-size: 18px; transition: transform 0.12s ease, color 0.12s ease, background 0.12s ease;}
+.icon_item:active i { transform: scale(0.9); background: #E8DAF1;}
+
+/* 신상품 */
+.icon_menu_row .icon_item:nth-child(1) i { color: #7A3EB1;}
+/* 헤어&바디 */
+.icon_menu_row .icon_item:nth-child(2) i { color: #9B5ED6;}
+/* 스킨케어 */
+.icon_menu_row .icon_item:nth-child(3) i { color: #C06FD4;}
+/* 럭셔리뷰티 */
+.icon_menu_row .icon_item:nth-child(4) i { color: #6F4BB8;}
+/* 요즘인기 */
+.icon_menu_row .icon_item:nth-child(5) i { color: #8d56ad;}
+
+
+.icon_item span { display: block; font-size: 12px; margin-top: 4px; color: #333; white-space: normal;  word-break: keep-all;}
+
+/* 3. 필터 영역 */
+.product_filter_wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  font-size: 13px;
+  background: #fff;
+}
+.filter_top {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.sort_button, .filter_button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  position: relative;
+}
+.sort_list {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  font-size: 12px;
+  list-style: none;
+  margin: 4px 0 0 0;
+  padding: 5px 0;
+  border-radius: 6px;
+  width: max-content;
+}
+.sort_list li {
+  padding: 6px 12px;
+}
+/* .sort_button:hover .sort_list { display: block; } */
+
+.sort_list.active {
+  display: block;
+}
+
+.filter_buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+/* 모달 배경 */
+/* 아코디언 기본 상태: 옵션 숨김 */
+.filter_options {
+  display: none;
+  padding: 0 8px 8px 8px;
+}
+
+/* 펼쳐진 상태 */
+.filter_section.active .filter_options {
+  display: block;
+}
+
+/* 버튼 스타일 */
+.filter_section_btn {
+  width: 100%;
+  background: none;
+  border: none;
+  font-weight: 600;
+  font-size: 14px;
+  text-align: left;
+  padding: 8px 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* 펼침 아이콘 */
+.filter_section_btn::after {
+  content: "▸"; /* 기본 화살표 */
+  transition: transform 0.3s;
+  margin-left: 8px;
+}
+
+.filter_section.active .filter_section_btn::after {
+  transform: rotate(90deg); /* 펼쳐지면 화살표 회전 */
+}
+
+.filter_modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.3);
+  display: none; /* 초기 숨김 */
+  justify-content: flex-end; /* 화면 아래에서 슬라이드 */
+  z-index: 1000;
+}
+
+.filter_modal_content {
+  background: #fff;
+  width: 100%;
+  max-height: 50%; /* 화면 아래에서 반 정도 올라오게 */
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  padding: 16px;
+  overflow-y: auto;
+  box-sizing: border-box;
+
+  /* 아래에서 시작 */
+  position: absolute;
+  bottom: 0;
+
+  /* 초기 상태는 화면 아래 */
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+/* 모달 활성화 상태 */
+.filter_modal.active .filter_modal_content {
+  transform: translateY(0); /* 슬라이드 업 */
+}
+
+/* 섹션 제목 */
+.filter_title {
+  font-weight: 600;
+  font-size: 14px;
+  margin: 10px 0 6px;
+}
+
+/* 체크박스 옵션 */
+.filter_options label {
+  display: block;
+  font-size: 13px;
+  margin: 4px 0;
+  padding-left: 20px; /* 체크박스와 텍스트 간격 확보 */
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+
+/* 하단 버튼 */
+.filter_modal_bottom {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 12px;
+}
+.filter_reset {
+  background: #eee;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.filter_apply {
+  background: #9344cb;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.filter_apply:active {
+  transform: scale(0.96);
+}
+
+/* 4. 상품 리스트 */
+.product_list_wrap {
+  padding: 10px;
+  background: #f9f9f9;
+}
+
+/* 한 줄에 2개씩 */
+.product_list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px; /* 카드 사이 간격 */
+}
+
+.product_item {
+  flex: 0 0 calc(50% - 10px); /* 2개씩 한 줄 */
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+/* 상품 이미지 */
+.product_img {
+  position: relative;
+  width: 100%;
+  height: 160px; /* 이미지 높이 */
+  overflow: hidden;
+  border-radius: 6px;
+  margin-bottom: 6px;
+}
+
+.product_img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 샛별배송 텍스트 이미지 아래로 */
+.delivery_tag {
+  display: block;
+  font-size: 11px;
+  color: #999;
+  margin-bottom: 4px;
+  text-align: left;
+}
+
+/* 상품명 */
+.product_name {
+  font-size: 14px;
+  line-height: 1.4;
+  margin-bottom: 4px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word;
+}
+
+/* 가격 */
+.product_price_before {
+  text-decoration: line-through;
+  font-size: 12px;
+  color: #999;
+  margin-bottom: 2px;
+}
+
+.product_price {
+  font-size: 14px;
+  font-weight: bold;
+  display: flex;
+  gap: 4px;
+}
+
+.product_price .discount {
+  color: red;
+}
+
+/* 아이콘 버튼 */
+.product_icon {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 6px;
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+}
+
+.product_icon i {
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+
+.product_icon i:hover {
+  color: #555;
+}
+
+.product_icon i:active {
+  transform: scale(0.8);
+}
+
+/* 5. 스크롤 업 버튼 */
+.scroll_top {
+  position: fixed;
+  bottom: 60px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #fff;
+  color: #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  z-index: 1000;
+}
+
+.scroll_top.hide {
+  opacity: 0;
+  pointer-events: none; /* 클릭 완전 차단 */
+}
+
+.footer_wrap {background: #f5f5f5; padding: 20px 20px 80px 20px; color: #333; font-size: 14px;}
+.footer_menu { display: flex; gap: 20px; font-weight: 600; padding-bottom: 10px;}
+.footer_info a {color: #57047D; text-decoration: none;}
+.footer_info a:hover {text-decoration: underline;}
+.footer_copy { display: flex; font-size: 13px; justify-content: center; align-items: center; gap: 6px; margin-top: 30px;}
+
+.bottom_nav {position: fixed; bottom: 0; width: 100%; display: flex; border-top: 1px solid #ddd; background-color: #fff; cursor: pointer; padding: 0;}
+
+.bottom_nav a { flex: 1; text-align: center; padding: 8px 0; font-size: 11px; text-decoration: none;  color: inherit; display: flex; flex-direction: column; align-items: center; justify-content: center;}
+
+.nav_icon i { font-size: 18px; margin-bottom: 4px; color: #333;}
+.nav_icon span { font-size: 11px; display: block; color: #222;}
+.nav_icon.active {color: #9344cb;}
+

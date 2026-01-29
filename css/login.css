@@ -1,0 +1,47 @@
+@charset "utf-8";
+
+* { margin: 0;  padding: 0; }
+
+body {font-family: normal 16px/1.5em 'Pretendard', sans-serif; background: #fff; display: flex; justify-content: center; align-items: flex-start; min-height: 100vh;}
+
+.login_container { width: 100%; max-width: 400px; padding: 20px; box-sizing: border-box;}
+
+.top_icons {text-align: right; color: #000;}
+
+.close_btn { font-size: 24px; cursor: pointer;}
+
+.logo { text-align: center; margin: 30px 0;}
+
+.logo img {width: 150px; max-width: 150px;}
+
+.input_group {position: relative;}
+
+.input_group input {width: 100%; padding: 15px 40px 15px 15px; border: 1px solid #e8e8e8; border-radius: 5px; font-size: 16px; box-sizing: border-box; }
+
+.password_group .toggle_password {position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #777}
+
+.checkbox_group {display: flex; align-items: center; margin-bottom: 20px; color: #333; padding: 5px 3px;}
+.checkbox_group input[type="checkbox"] {margin-right: 8px;}
+.checkbox_group label {color: #777; font-size: 15px; cursor: pointer;}
+
+.login_btn {width: 100%; padding: 12px; margin-top: 30px; background-color: #9344CB; color: #fff; border: 1px solid #9344CB; border-radius: 5px; cursor: pointer;}
+.login_btn:hover { background-color: #57047D; color: #fff; border: 1px solid #57047D}
+.signup_btn {width: 100%; padding: 12px; margin-top: 20px; background-color: #fff; color: #9344CB; border: 1px solid #9344CB; border-radius: 5px; cursor: pointer; }
+.signup_btn:hover {background-color: #57047D; color: #fff; border: 1px solid #57047D; }
+
+.find_info { text-align: center; margin-bottom: 20px;}
+
+.find_info button {background: none; border: none; color: #777; margin-top: 15px; cursor: pointer; font-size: 14px;}
+
+.find_info span {margin: 0 5px; color: #e8e8e8; }
+
+hr {margin: 50px 0; border: none; border-top: 1px solid #e8e8e8;}
+
+.social_text {text-align: center; margin-bottom: 15px; color: #555; font-size: 14px;}
+.social_text strong {color: #9344cb; font-weight: normal;}
+
+.social_buttons { display: flex; flex-direction: column; gap: 15px;}
+.social_buttons button { padding: 8px; border: none; border-radius: 5px; font-size: 16px; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center;}
+.social_buttons i {margin-right: 8px;}
+.naver_btn { background-color: #00B818;}
+.kakao_btn {background-color: #FBE201; color: #000;}

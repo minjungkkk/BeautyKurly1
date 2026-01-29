@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=395, initial-scale=1.0">
+<title>Beauty Kurly|cart</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/cart.css">
+</head>
+<body>
+
+<header class="cart_header">
+  <div class="header_left">
+    <a href="#" class="close"><i class="fas fa-xmark"></i></a>
+    <span class="header_title">장바구니</span>
+  </div>
+  <div class="header_right">
+    <a href="#" class="search"><i class="fas fa-magnifying-glass"></i></a>
+    <a href="#" class="home"><i class="fas fa-house"></i></a>
+  </div>
+</header>
+
+<!-- 배송 정보 -->
+<section class="delivery_info">
+  <div class="delivery_tag">샛별배송</div>
+  <div class="delivery_address">
+    <span>서울시 노원구 가나다로 1길 2, 한국아파트 101동 001호</span>
+    <button class="btn_change">변경</button>
+  </div>
+  <div class="free_delivery">
+    <span>n원 추가 시 무료 배송</span>
+    <div class="delivery_range">
+      <div class="delivery_progress" style="width: 50%;"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 탭 -->
+<section class="cart_tabs">
+  <button class="tab active">담은 상품 <span class="item_count">2</span></button>
+  <button class="tab">자주 구매 상품</button>
+</section>
+
+<!-- 선택/삭제 -->
+<section class="cart_select">
+  <div class="select_left">
+    <input type="checkbox" id="select_all">
+    <label for="select_all">전체선택</label>
+  </div>
+  <button class="select_delete">선택삭제</button>
+</section>
+
+<!-- 상품 리스트 -->
+<section class="cart_items">
+
+  <!-- 상품 1 -->
+  <div class="cart_item">
+    <div class="item_left">
+      <img src="images/product1.jpg" alt="상품1">
+      <div class="item_count">
+        <button class="minus">-</button>
+        <span>1</span>
+        <button class="plus">+</button>
+      </div>
+    </div>
+    <div class="item_right">
+      <input type="checkbox">
+      <div class="item_name">상품명 예시 1</div>
+      <div class="item_price">
+        <div class="before">12,000원</div>
+        <div class="after">10,000원</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 상품 2 -->
+  <div class="cart_item">
+    <div class="item_left">
+      <img src="images/product2.jpg" alt="상품2">
+      <div class="item_count">
+        <button class="minus">-</button>
+        <span>1</span>
+        <button class="plus">+</button>
+      </div>
+    </div>
+    <div class="item_right">
+      <input type="checkbox">
+      <div class="item_name">상품명 예시 2</div>
+      <div class="item_price">
+        <div class="before">15,000원</div>
+        <div class="after">12,500원</div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- 금액 요약 -->
+<section class="cart_summary">
+  <div class="summary_row">
+    <span>상품금액</span>
+    <span>22,000원</span>
+  </div>
+  <div class="summary_row">
+    <span>상품할인금액</span>
+    <span class="discount">-2,500원</span>
+  </div>
+  <div class="summary_row">
+    <span>배송비</span>
+    <span>2,500원</span>
+  </div>
+</section>
+
+<!-- 총 결제금액 -->
+<section class="total_pay">
+  65,000원 주문하기
+</section>
+
+<!-- 추천 상품 -->
+<section class="recommend_products">
+  <div class="recommend_title">
+    <i class="fas fa-star"></i>
+    <span>건조한 겨울에 어울리는 상품 추천</span>
+  </div>
+  <div class="recommend_list">
+    <div class="rec_item">
+      <img src="images/product3.jpg" alt="">
+      <div class="rec_name">상품 1</div>
+      <div class="rec_price">5,000원</div>
+    </div>
+    <div class="rec_item">
+      <img src="images/product4.jpg" alt="">
+      <div class="rec_name">상품 2</div>
+      <div class="rec_price">7,000원</div>
+    </div>
+    <div class="rec_item">
+      <img src="images/product5.jpg" alt="">
+      <div class="rec_name">상품 3</div>
+      <div class="rec_price">6,500원</div>
+    </div>
+  </div>
+</section>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+  /* 헤더 아이콘 클릭 이동 */
+  const headerX = document.querySelector('.header_left a');
+  const headerSearch = document.querySelector('.header_right a:nth-child(1)');
+  const headerHome = document.querySelector('.header_right a:nth-child(2)');
+
+  headerX.addEventListener('click', () => {
+    history.back();
+  });
+
+  headerSearch.addEventListener('click', () => {
+    location.href = 'search.html'; // 검색 페이지
+  });
+
+  headerHome.addEventListener('click', () => {
+    location.href = 'home.html'; // 홈 페이지
+  });
+
+  /* 상품 개수 증감 */
+  const cartItems = document.querySelectorAll('.cart_item');
+
+  cartItems.forEach(item => {
+    const minusBtn = item.querySelector('.minus');
+    const plusBtn = item.querySelector('.plus');
+    const countSpan = item.querySelector('.item_count span');
+
+    minusBtn.addEventListener('click', () => {
+      let count = parseInt(countSpan.textContent);
+      if(count > 1) {
+        count--;
+        countSpan.textContent = count;
+      }
+    });
+
+    plusBtn.addEventListener('click', () => {
+      let count = parseInt(countSpan.textContent);
+      count++;
+      countSpan.textContent = count;
+    });
+  });
+
+  /* 전체 선택 / 선택 삭제 */
+  const selectAll = document.getElementById('select_all');
+  const selectDelete = document.querySelector('.select_delete');
+
+  selectAll.addEventListener('change', () => {
+    const checkboxes = document.querySelectorAll('.cart_item input[type="checkbox"]');
+    checkboxes.forEach(chk => {
+      chk.checked = selectAll.checked;
+    });
+  });
+
+  selectDelete.addEventListener('click', () => {
+    const items = document.querySelectorAll('.cart_item');
+    items.forEach(item => {
+      const chk = item.querySelector('input[type="checkbox"]');
+      if(chk.checked) {
+        item.remove();
+      }
+    });
+  });
+
+  /* 탭 전환 */
+  const tabs = document.querySelectorAll('.cart_tabs .tab');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      // 여기서 실제 상품 리스트 전환 로직 필요 시 추가 가능
+      // 예: 담은상품/자주 구매 상품 리스트 display toggle
+    });
+  });
+
+});
+</script>
+</body>
+</html>
