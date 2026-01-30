@@ -22,7 +22,7 @@ body {font-family: normal 16px/1.5em  'Pretendard', sans-serif;  background-colo
 .quick_icon.pick i { color: #FE48DD;}
 
 
-.category_container { display: flex; height: calc(100vh - 270px);  cursor: pointer;}
+.category_container { display: flex; height: calc(100vh - 60px - 110px);  cursor: pointer;}
 .category_main { width: 40%; background-color: #f7f7f7; list-style: none; margin: 0; padding: 0;  position: sticky; top: 0; max-height: 100vh; overflow-y: auto; -ms-overflow-style: none; scrollbar-width: none;}
 .category_main::-webkit-scrollbar { width: 0; height: 0;}
 .category_main li { padding: 15px; border-bottom: 1px solid #ddd; font-size: 17px;}
@@ -40,7 +40,7 @@ body {font-family: normal 16px/1.5em  'Pretendard', sans-serif;  background-colo
 
 .nav_icon i { font-size: 18px; margin-bottom: 4px; color: #333;}
 .nav_icon span { font-size: 11px; display: block; color: #222;}
-.nav_icon.active {color: #9344cb;}
+.nav_icon.active i {color: #9344cb;}
 
 
 
