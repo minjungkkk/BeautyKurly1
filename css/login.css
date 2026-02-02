@@ -2,7 +2,7 @@
 
 * { margin: 0;  padding: 0; }
 
-body {font-family: normal 16px/1.5em 'Pretendard', sans-serif; background: #fff; display: flex; justify-content: center; align-items: flex-start; min-height: 100vh;}
+body {background: #fff; display: flex; justify-content: center; align-items: flex-start; min-height: 100vh;}
 
 .login_container { width: 100%; max-width: 400px; padding: 20px; box-sizing: border-box;}
 

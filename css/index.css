@@ -4,8 +4,8 @@
 
 body {font-family: normal 16px/1.5em  'Pretendard', sans-serif;  background-color: #fff; color: #333;}
 
-#header {display: flex; justify-content: space-between; align-items: center; padding: 15px; font-weight: bold;}
-.top_left {font-size: 22px;}
+#header {display: flex; justify-content: space-between; align-items: center; padding: 15px; font-weight: 600; height: 65px;}
+.top_left {font-size: 20px;}
 #header i { margin-left: 15px; font-size: 20px; color: #000;}
 
 
@@ -21,17 +21,17 @@ body {font-family: normal 16px/1.5em  'Pretendard', sans-serif;  background-colo
 .quick_icon.best i  { color: #FFC945;}
 .quick_icon.pick i { color: #FE48DD;}
 
-
+/* 이부분 다시한번 보기 height */
 .category_container { display: flex; height: calc(100vh - 60px - 110px);  cursor: pointer;}
-.category_main { width: 40%; background-color: #f7f7f7; list-style: none; margin: 0; padding: 0;  position: sticky; top: 0; max-height: 100vh; overflow-y: auto; -ms-overflow-style: none; scrollbar-width: none;}
+.category_main { width: 40%; height: 780px; background-color: #f7f7f7; list-style: none; margin: 0; padding: 0;  position: sticky; top: 0; max-height: 100vh; overflow-y: auto; -ms-overflow-style: none; scrollbar-width: none;}
 .category_main::-webkit-scrollbar { width: 0; height: 0;}
 .category_main li { padding: 15px; border-bottom: 1px solid #ddd; font-size: 17px;}
 .category_main li.active { background-color: #fff; font-weight: bold;}
 
-.category_sub {width: 60%; list-style: none; padding: 15px; overflow-y: auto; height: 100%;-ms-overflow-style: none; scrollbar-width: none;  cursor: pointer;}
+.category_sub {width: 60%; list-style: none; padding: 15px; overflow-y: auto; height: 100%; -ms-overflow-style: none; scrollbar-width: none;  cursor: pointer;}
 .category_sub::-webkit-scrollbar {display: none;}
 .category_sub li { padding: 10px 0; font-size: 13px; color: #555; list-style: none;}
-.category_sub li a { padding: 10px 0; font-size: 16px; color: #555; list-style: none;}
+.category_sub li a { padding: 10px 0; font-size: 16px; color: #555; text-decoration: underline;}
 .category_sub li i {float: right; font-size: 15px;}
 
 .bottom_nav {position: fixed; bottom: 0; width: 100%; display: flex; border-top: 1px solid #ddd; background-color: #fff; cursor: pointer; padding: 0;}

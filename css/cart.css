@@ -1,5 +1,4 @@
-* {margin: 0;  padding: 0;}
-body {font-family: normal 16px/1.5em 'Pretendard', sans-serif; width: 395px; margin: 0 auto; background: #fff;}
+body {width: 395px; margin: 0 auto; background: #fff;}
 
 .cart_header {display: flex; justify-content: space-between; align-items: center; margin: 0; padding: 12px 16px; width: 100%; box-sizing: border-box;}
 .header_left {display: flex; align-items: center; gap: 15px;}
