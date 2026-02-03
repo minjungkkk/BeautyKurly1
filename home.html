@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="css/home.css">
 </head>
 <body>
+<div class="header_area">
   <header class="header_wrap">
     <div class="header_left">
       <a href="home.html" class="logo"><img src="images/logo.jpg" alt="컬리 로고"></a>
@@ -30,20 +31,32 @@
       <li><a href="#">특가/혜택</a></li>
     </ul>
   </nav>
+</div>
 
-  <section class="slider_wrap">
-    <div class="slider_container">
-      <a href="#" class="slider_item"><img src="images/home_Mbanner.jpg" alt="메인배너"></a>
-    </div>
+<section class="slider_wrap">
+  <div class="slider_container" id="sliderContainer">
+    <a href="event1.html" class="slider_item"><img src="images/home_Mbanner1.jpg" alt="메인배너1"></a>
+    <a href="event2.html" class="slider_item"><img src="images/home_Mbanner2.jpg" alt="메인배너2"></a>
+    <a href="event3.html" class="slider_item"><img src="images/home_Mbanner3.jpg" alt="메인배너3"></a>
+    <a href="event4.html" class="slider_item"><img src="images/home_Mbanner4.jpg" alt="메인배너4"></a>
+    <a href="event5.html" class="slider_item"><img src="images/home_Mbanner5.jpg" alt="메인배너5"></a>
+    <a href="event6.html" class="slider_item"><img src="images/home_Mbanner6.jpg" alt="메인배너6"></a>
+    <a href="event7.html" class="slider_item"><img src="images/home_Mbanner7.jpg" alt="메인배너7"></a>
+    <a href="event8.html" class="slider_item"><img src="images/home_Mbanner8.jpg" alt="메인배너8"></a>
+    <a href="event9.html" class="slider_item"><img src="images/home_Mbanner9.jpg" alt="메인배너9"></a>
+    <a href="event10.html" class="slider_item"><img src="images/home_Mbanner10.jpg" alt="메인배너10"></a>
+    <a href="event11.html" class="slider_item"><img src="images/home_Mbanner11.jpg" alt="메인배너11"></a>
+  </div>
 
-    <div class="slider_control">
-      <button class="slider_pause">||</button>
-      <button class="slider_page">
-        <span>01/10 전체보기</span>
-        <i class="fa-solid fa-chevron-right"></i>
-    </button>
-    </div>
-  </section>
+  <div class="slider_dots" id="sliderDots"></div>
+
+  <button class="slider_all_btn" onclick="location.href='events.html'">
+    전체보기
+    <i class="fa-solid fa-chevron-right"></i>
+  </button>
+</section>
+
+
 
   <section class="icon_menu_wrap">
     <div class="icon_menu_row1">
@@ -301,7 +314,7 @@
       <i class="fa-regular fa-comments"></i>
       <span>라운지</span>
     </a>
-    <a href="mypage.html" class="nav_icon">
+    <a href="my_page.html" class="nav_icon">
       <i class="fa-regular fa-user"></i>
       <span>마이컬리</span>
     </a>
@@ -309,6 +322,7 @@
 
   
 <script>
+  /* 반짝세일 */
   const time_el = document.querySelector('.time');
 
   let total_seconds = 24 * 60 * 60;
@@ -326,10 +340,12 @@
   setInterval(update_timer, 1000);
   update_timer();
 
+  /* 키워드 랭킹 */
 window.addEventListener('DOMContentLoaded', () => {
   const keywordList = document.querySelector('.keyword_list');
   const items = Array.from(document.querySelectorAll('.keyword_item'));
   const itemCount = items.length;
+
 
   // 첫 아이템 복제
   const firstClone = items[0].cloneNode(true);
@@ -370,6 +386,80 @@ window.addEventListener('DOMContentLoaded', () => {
     keywordList.style.transition = 'none';
     keywordList.style.transform = `translateY(${-index * itemHeight}px)`;
   });
+});
+
+const sliderContainer = document.getElementById('sliderContainer');
+const slides = sliderContainer.querySelectorAll('.slider_item');
+const dotsContainer = document.getElementById('sliderDots');
+let currentIndex = 0;
+const totalSlides = slides.length;
+
+// dot 생성
+slides.forEach((_, i) => {
+  const dot = document.createElement('span');
+  dot.classList.add('dot');
+  if(i===0) dot.classList.add('active');
+  dot.addEventListener('click', () => goToSlide(i));
+  dotsContainer.appendChild(dot);
+});
+
+// 슬라이드 이동
+function goToSlide(index){
+  sliderContainer.style.transform = `translateX(-${index * 100}%)`;
+  currentIndex = index;
+  updateDots();
+}
+
+// dot 업데이트
+function updateDots(){
+  const dots = dotsContainer.querySelectorAll('.dot');
+  dots.forEach(dot => dot.classList.remove('active'));
+  dots[currentIndex].classList.add('active');
+}
+
+// 자동 슬라이드
+function nextSlide(){
+  currentIndex = (currentIndex + 1) % totalSlides;
+  goToSlide(currentIndex);
+}
+let slideInterval = setInterval(nextSlide, 3000);
+
+// 마우스 오버시 일시정지
+sliderContainer.addEventListener('mouseenter', () => clearInterval(slideInterval));
+sliderContainer.addEventListener('mouseleave', () => slideInterval = setInterval(nextSlide, 3000));
+
+let startX = 0;
+let isDragging = false;
+
+/* 스와이프해서 넘길 수 있게 */
+// 터치 시작
+sliderContainer.addEventListener('touchstart', (e) => {
+  clearInterval(slideInterval); // 자동 슬라이드 잠시 멈춤
+  startX = e.touches[0].clientX;
+  isDragging = true;
+});
+
+// 터치 이동
+sliderContainer.addEventListener('touchmove', (e) => {
+  if(!isDragging) return;
+  const moveX = e.touches[0].clientX - startX;
+  sliderContainer.style.transform = `translateX(${-currentIndex * 100 + (moveX / sliderContainer.clientWidth) * 100}%)`;
+});
+
+// 터치 끝
+sliderContainer.addEventListener('touchend', (e) => {
+  isDragging = false;
+  const endX = e.changedTouches[0].clientX;
+  const diff = endX - startX;
+
+  if(diff > 50){ // 오른쪽으로 스와이프 → 이전 슬라이드
+    currentIndex = currentIndex === 0 ? totalSlides - 1 : currentIndex - 1;
+  } else if(diff < -50){ // 왼쪽으로 스와이프 → 다음 슬라이드
+    currentIndex = (currentIndex + 1) % totalSlides;
+  }
+
+  goToSlide(currentIndex);
+  slideInterval = setInterval(nextSlide, 3000); // 자동 슬라이드 재개
 });
 </script>
 </body>
