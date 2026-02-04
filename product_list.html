@@ -10,37 +10,30 @@
   <link rel="stylesheet" href="css/product_list.css">
 </head>
 <body>
-
+<div class="header_sticky">
   <header class="header_wrap">
-  <div class="header_logo">
-    <a href="home.html"><img src="images/logo.jpg" alt="컬리 로고"></a>
-  </div>
-  <div class="header_icons">
-    <a href="#"><i class="fa-regular fa-bell"></i></a>
-    <a href="#"><i class="fas fa-shopping-cart"></i></a>
-  </div>
-</header>
-
-<!--   <header class="header_wrap">
-    <div class="header_left">
-      <a href="home.html" class="logo"><img src="images/logo.jpg" alt="컬리 로고"></a>
+    <div class="header_logo">
+      <a href="home.html">
+        <img src="images/logo.jpg" alt="컬리 로고">
+      </a>
     </div>
-    <div class="header_right">
+    <div class="header_icons">
       <a href="#"><i class="fa-regular fa-bell"></i></a>
       <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
     </div>
-  </header> -->
+  </header>
 
   <nav class="sub_menu_wrap">
     <ul class="sub_menu_list">
       <li><a href="#">컬리추천</a></li>
       <li><a href="#">베스트</a></li>
       <li><a href="#">세일</a></li>
-      <li><a href="#" class="highlight">신상품</a></li>
+      <li><a href="product_list.html" class="highlight">신상품</a></li>
       <li><a href="#">브랜드관</a></li>
       <li><a href="#">특가/혜택</a></li>
     </ul>
   </nav>
+</div><!-- header_sticky -->
 
     <section class="icon_menu_wrap">
     <div class="icon_menu_row">
@@ -322,7 +315,7 @@
       <i class="fa-solid fa-magnifying-glass"></i>
       <span>검색</span>
     </a>
-    <a href="home.html" class="nav_icon">
+    <a href="home.html" class="nav_icon active">
       <i class="fa-solid fa-house"></i>
       <span>홈</span>
     </a>
@@ -338,6 +331,17 @@
 </footer>
 
 <script>
+
+/* 상단 스티키메뉴에 스크롤하면 그림자 생성하기 */
+const headerSticky = document.querySelector('.header_sticky');
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 0) {
+    headerSticky.classList.add('is_scrolled');
+  } else {
+    headerSticky.classList.remove('is_scrolled');
+  }
+});
 
 /* 모달 부분 */
 const filterBtn = document.querySelector('.filter_button');

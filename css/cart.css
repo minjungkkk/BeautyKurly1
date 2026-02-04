@@ -73,11 +73,11 @@ border-radius: 10px;}
 
 .delivery_tag {display: block; font-size: 11px; color: #999; margin-bottom: 2px; text-align: left;}
 
-.product_price_before {text-decoration: line-through; font-size: 12px; color: #999; margin-bottom: 2px;}
-.product_price {font-size: 14px; font-weight: bold; display: flex; gap: 4px; justify-content: flex-start; width: 100%;}
+.product_price_before {text-decoration: line-through; font-size: 11px; color: #999; margin-bottom: 2px;}
+.product_price {font-size: 13px; font-weight: bold; display: flex; gap: 4px; justify-content: flex-start; width: 100%;}
 .product_price .discount {color: red;}
 
-.product_icon {display: flex; justify-content: flex-end; gap: 8px; margin-top: 6px; font-size: 13px; color: #333; cursor: pointer;}
+.product_icon {display: flex; justify-content: flex-end; gap: 8px; margin: 6px 5px 0 auto; font-size: 13px; color: #333; cursor: pointer;}
 .product_icon i {transition: transform 0.15s ease, color 0.15s ease;}
 .product_icon i:hover {color: #555;}
 .product_icon i:active {transform: scale(0.8);}
