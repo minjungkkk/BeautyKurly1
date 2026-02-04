@@ -3,7 +3,7 @@ body {width: 395px; margin: 0 auto; background: #fff;}
 .header_wrap {height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; box-sizing: border-box; background-color: #fff; font-weight: 600;}
 .header_left_group {display: flex; align-items: center; gap: 12px;}
 .header_btn i {font-size: 20px; color: #000;}
-.header_title {font-size: 20px; line-height: 1;}
+.header_title {font-size: 20px; line-height: 1; font-weight: 600;}
 .header_logo img {height: 24px; display: block;}
 .header_icons {display: flex; align-items: center;}
 .header_icons i {font-size: 20px; margin-left: 16px; line-height: 1; color: #000;}
