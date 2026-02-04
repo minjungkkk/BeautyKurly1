@@ -81,4 +81,3 @@ border-radius: 10px;}
 .product_icon i {transition: transform 0.15s ease, color 0.15s ease;}
 .product_icon i:hover {color: #555;}
 .product_icon i:active {transform: scale(0.8);}
-/* 아이콘 오른쪽배치하기~~~ */

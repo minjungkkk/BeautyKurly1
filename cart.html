@@ -18,7 +18,7 @@
     <span class="header_title">장바구니</span>
   </div>
   <div class="header_icons">
-    <a href="#"><i class="fas fa-magnifying-glass"></i></a>
+    <a href="search.html"><i class="fas fa-magnifying-glass"></i></a>
     <a href="#"><i class="fas fa-house"></i></a>
   </div>
 </header>
@@ -43,7 +43,7 @@
 
 <section class="cart_select">
   <div class="select_left">
-    <input type="checkbox" id="select_all">
+    <input type="checkbox" id="select_all" checked>
     <label for="select_all">전체선택</label>
   </div>
   <button class="select_delete">선택삭제</button>
@@ -203,61 +203,93 @@
 </section>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
 
-/* 헤더 아이콘 */
-const headerX = document.querySelector('.header_btn');
-const headerSearch = document.querySelector('.header_icons a:nth-child(1)');
-const headerHome = document.querySelector('.header_icons a:nth-child(2)');
+  /* 헤더 아이콘 */
+  const headerX = document.querySelector('.header_btn');
+  const headerSearch = document.querySelector('.header_icons a:nth-child(1)');
+  const headerHome = document.querySelector('.header_icons a:nth-child(2)');
 
-if (headerX) {
-  headerX.addEventListener('click', (e) => {
-    e.preventDefault();
-    history.back();
-  });
-}
-
-if (headerSearch) {
-  headerSearch.addEventListener('click', (e) => {
-    e.preventDefault();
-    location.href = 'search.html';
-  });
-}
-
-if (headerHome) {
-  headerHome.addEventListener('click', (e) => {
-    e.preventDefault();
-    location.href = 'home.html';
-  });
-}
-
-  // 총액 계산
-  function calculateTotal() {
-    let total = 0;
-    cartItems.forEach(item => {
-      const priceText = item.querySelector('.item_price .after').textContent.replace(/[^0-9]/g,'');
-      const count = parseInt(item.querySelector('.item_count span').textContent);
-      total += parseInt(priceText) * count;
+  if (headerX) {
+    headerX.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (document.referrer) {
+        history.back();
+      } else {
+        location.href = 'home.html';
+      }
     });
-    return total;
   }
 
-  function updateDeliveryProgress() {
-    const total = calculateTotal();
-    const percent = Math.min(total / freeDeliveryAmount * 100, 100);
-    deliveryProgress.style.width = percent + '%';
-
-    totalPrice.textContent = total.toLocaleString() + '원';
-
-    if(total >= freeDeliveryAmount){
-      deliveryText.textContent = "무료배송 달성!";
-      deliveryProgress.parentElement.classList.add('free');
-    } else {
-      deliveryText.textContent = (freeDeliveryAmount - total).toLocaleString() + "원 추가 시 무료 배송";
-      deliveryProgress.parentElement.classList.remove('free');
-    }
+  if (headerSearch) {
+    headerSearch.addEventListener('click', (e) => {
+      e.preventDefault();
+      location.href = 'search.html';
+    });
   }
 
+  if (headerHome) {
+    headerHome.addEventListener('click', (e) => {
+      e.preventDefault();
+      location.href = 'home.html';
+    });
+  }
+
+
+
+  const selectAll = document.getElementById('select_all');
+  const selectDelete = document.querySelector('.select_delete');
+  let cartItems = document.querySelectorAll('.cart_item');
+
+  // --- 전체선택 체크박스 기본 체크 & 하위 체크박스 체크 ---
+  selectAll.checked = true;
+  cartItems.forEach(item => {
+    const chk = item.querySelector('input[type="checkbox"]');
+    chk.checked = true;
+  });
+
+  // --- 하위 체크박스 이벤트: 전체선택 동기화 ---
+  function updateSelectAllState() {
+    const allChecked = [...cartItems].every(item => item.querySelector('input[type="checkbox"]').checked);
+    selectAll.checked = allChecked;
+  }
+
+  cartItems.forEach(item => {
+    const chk = item.querySelector('input[type="checkbox"]');
+    chk.addEventListener('change', updateSelectAllState);
+  });
+
+  // --- 전체선택 클릭 이벤트 ---
+  selectAll.addEventListener('change', () => {
+    cartItems.forEach(item => {
+      const chk = item.querySelector('input[type="checkbox"]');
+      chk.checked = selectAll.checked;
+    });
+  });
+
+  // --- 선택삭제 기능 ---
+  selectDelete.addEventListener('click', () => {
+    cartItems.forEach(item => {
+      const chk = item.querySelector('input[type="checkbox"]');
+      if(chk.checked) {
+        item.remove();
+      }
+    });
+
+    // 삭제 후 cartItems 갱신
+    cartItems = document.querySelectorAll('.cart_item');
+
+    // 삭제 후 하위 체크박스 이벤트 다시 바인딩
+    cartItems.forEach(item => {
+      const chk = item.querySelector('input[type="checkbox"]');
+      chk.addEventListener('change', updateSelectAllState);
+    });
+
+    // 전체선택 상태 갱신
+    updateSelectAllState();
+  });
+
+  // --- 상품 수량 증감 기능 ---
   function bindCountEvents() {
     cartItems.forEach(item => {
       const minusBtn = item.querySelector('.minus');
@@ -269,7 +301,6 @@ if (headerHome) {
         if(count > 1){
           count--;
           countSpan.textContent = count;
-          updateDeliveryProgress();
         }
       };
 
@@ -277,76 +308,15 @@ if (headerHome) {
         let count = parseInt(countSpan.textContent);
         count++;
         countSpan.textContent = count;
-        updateDeliveryProgress();
       };
     });
   }
 
-  // 선택 삭제
-  const selectDelete = document.querySelector('.select_delete');
-  selectDelete.onclick = () => {
-    cartItems.forEach(item => {
-      const chk = item.querySelector('input[type="checkbox"]');
-      if(chk.checked) item.remove();
-    });
-    cartItems = document.querySelectorAll('.cart_item'); // 재선택
-    bindCountEvents(); // 이벤트 재바인딩
-    updateDeliveryProgress();
-  };
-
   bindCountEvents();
-  updateDeliveryProgress();
- 
+
+});
 
 
-
-
-
-
-
-  /* 상품 개수 증감하기 */
-  const cart_Items = document.querySelectorAll('.cart_item');
-
-  cart_Items.forEach(item => {
-    const minusBtn = item.querySelector('.minus');
-    const plusBtn = item.querySelector('.plus');
-    const countSpan = item.querySelector('.item_count span');
-
-    minusBtn.addEventListener('click', () => {
-      let count = parseInt(countSpan.textContent);
-      if(count > 1) {
-        count--;
-        countSpan.textContent = count;
-      }
-    });
-
-    plusBtn.addEventListener('click', () => {
-      let count = parseInt(countSpan.textContent);
-      count++;
-      countSpan.textContent = count;
-    });
-  });
-
-  /* 전체 선택, 선택 삭제 기능 부분 */
-  const selectAll = document.getElementById('select_all');
-  const select_Delete = document.querySelector('.select_delete');
-
-  selectAll.addEventListener('change', () => {
-    const checkboxes = document.querySelectorAll('.cart_item input[type="checkbox"]');
-    checkboxes.forEach(chk => {
-      chk.checked = selectAll.checked;
-    });
-  });
-
-  selectDelete.addEventListener('click', () => {
-    const items = document.querySelectorAll('.cart_item');
-    items.forEach(item => {
-      const chk = item.querySelector('input[type="checkbox"]');
-      if(chk.checked) {
-        item.remove();
-      }
-    });
-  });
 
   /* 탭 전환하기 */
   const tabs = document.querySelectorAll('.cart_tabs .tab');
@@ -358,7 +328,6 @@ if (headerHome) {
     });
   });
 
-});
 </script>
 </body>
 </html>
