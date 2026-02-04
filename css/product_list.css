@@ -1,9 +1,10 @@
 @charset "utf-8";
 
-.logo img {height: 30px; width: 60px; display: block;}
-.header_right i {margin-left: 15px; margin-top: 5px; font-size: 20px; color: #000; }
-
-.header_wrap { display: flex; justify-content: space-between; padding: 15px 20px;}
+.header_wrap {height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; box-sizing: border-box; background-color: #fff; font-weight: 600;}
+.header_title {font-size: 20px; line-height: 1;}
+.header_logo img {height: 30px; display: block;}
+.header_icons {display: flex; align-items: center;}
+.header_icons i {font-size: 20px; margin-left: 16px; line-height: 1; color: #000;}
 
 .sub_menu_wrap {overflow-x: auto; -webkit-overflow-scrolling: touch;}
 .sub_menu_list { display: flex; padding: 10px 0; margin: 0 10px; list-style: none; gap: 12px;}
