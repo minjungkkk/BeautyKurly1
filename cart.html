@@ -65,7 +65,7 @@
       <div class="item_name">[포트레] 핸드 크림 누보30ml</div>
       <div class="item_price">
         <div class="before">20,000원</div>
-        <div class="after">16,150원</div>
+        <div class="after">16,150원</div>ㅜ
       </div>
     </div>
   </div>
@@ -235,23 +235,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-
-
+  // --- 장바구니 체크박스 & 선택 삭제 ---
   const selectAll = document.getElementById('select_all');
   const selectDelete = document.querySelector('.select_delete');
   let cartItems = document.querySelectorAll('.cart_item');
 
-  // --- 전체선택 체크박스 기본 체크 & 하위 체크박스 체크 ---
+  // 전체선택 초기 체크
   selectAll.checked = true;
   cartItems.forEach(item => {
     const chk = item.querySelector('input[type="checkbox"]');
     chk.checked = true;
   });
 
-  // --- 하위 체크박스 이벤트: 전체선택 동기화 ---
   function updateSelectAllState() {
     const allChecked = [...cartItems].every(item => item.querySelector('input[type="checkbox"]').checked);
     selectAll.checked = allChecked;
+    updateCartSummary();
   }
 
   cartItems.forEach(item => {
@@ -259,37 +258,28 @@ document.addEventListener('DOMContentLoaded', () => {
     chk.addEventListener('change', updateSelectAllState);
   });
 
-  // --- 전체선택 클릭 이벤트 ---
   selectAll.addEventListener('change', () => {
     cartItems.forEach(item => {
       const chk = item.querySelector('input[type="checkbox"]');
       chk.checked = selectAll.checked;
     });
+    updateCartSummary();
   });
 
-  // --- 선택삭제 기능 ---
   selectDelete.addEventListener('click', () => {
     cartItems.forEach(item => {
       const chk = item.querySelector('input[type="checkbox"]');
-      if(chk.checked) {
-        item.remove();
-      }
+      if(chk.checked) item.remove();
     });
-
-    // 삭제 후 cartItems 갱신
     cartItems = document.querySelectorAll('.cart_item');
-
-    // 삭제 후 하위 체크박스 이벤트 다시 바인딩
     cartItems.forEach(item => {
       const chk = item.querySelector('input[type="checkbox"]');
       chk.addEventListener('change', updateSelectAllState);
     });
-
-    // 전체선택 상태 갱신
     updateSelectAllState();
   });
 
-  // --- 상품 수량 증감 기능 ---
+  // --- 수량 증감 ---
   function bindCountEvents() {
     cartItems.forEach(item => {
       const minusBtn = item.querySelector('.minus');
@@ -298,29 +288,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
       minusBtn.onclick = () => {
         let count = parseInt(countSpan.textContent);
-        if(count > 1){
-          count--;
-          countSpan.textContent = count;
-        }
+        if(count > 1) countSpan.textContent = --count;
+        updateCartSummary();
       };
 
       plusBtn.onclick = () => {
         let count = parseInt(countSpan.textContent);
-        count++;
-        countSpan.textContent = count;
+        countSpan.textContent = ++count;
+        updateCartSummary();
       };
     });
   }
 
   bindCountEvents();
 
-});
-
-
-
-  /* 탭 전환하기 */
+  // --- 탭 전환 ---
   const tabs = document.querySelectorAll('.cart_tabs .tab');
-
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
       tabs.forEach(t => t.classList.remove('active'));
@@ -328,6 +311,48 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // --- 장바구니 금액 계산 ---
+function updateCartSummary() {
+  const cartItems = document.querySelectorAll('.cart_item'); // 매번 새로 가져오기
+  const freeDeliveryThreshold = 40000;
+  const defaultDeliveryFee = 2500;
+
+  let totalPrice = 0;
+  let totalDiscount = 0;
+  let selectedCount = 0;
+
+  // 선택된 상품 합계 계산
+  cartItems.forEach(item => {
+    const chk = item.querySelector('input[type="checkbox"]');
+    if (!chk.checked) return;
+
+    selectedCount++;
+
+    const count = parseInt(item.querySelector('.item_count span').textContent);
+    const priceBefore = parseInt(item.querySelector('.item_price .before').textContent.replace(/[^0-9]/g,''));
+    const priceAfter = parseInt(item.querySelector('.item_price .after').textContent.replace(/[^0-9]/g,''));
+
+    totalPrice += priceAfter * count;
+    totalDiscount += (priceBefore - priceAfter) * count;
+  });
+
+  // 배송비 계산
+  const deliveryFeeUI = (selectedCount > 0 && totalPrice >= freeDeliveryThreshold) ? 0 : defaultDeliveryFee;
+
+  // 총액 계산
+  const totalPay = (selectedCount > 0) ? totalPrice + (totalPrice < freeDeliveryThreshold ? defaultDeliveryFee : 0) : 0;
+
+  // UI 업데이트
+  document.querySelector('.cart_summary .summary_row:nth-child(1) span:last-child').textContent = totalPrice.toLocaleString() + '원';
+  document.querySelector('.cart_summary .summary_row:nth-child(2) .discount').textContent = '-' + totalDiscount.toLocaleString() + '원';
+  document.querySelector('.cart_summary .summary_row:nth-child(3) span:last-child').textContent = deliveryFeeUI.toLocaleString() + '원';
+  document.querySelector('.total_price').textContent = totalPay.toLocaleString() + '원';
+}
+
+  updateCartSummary();
+
+});
 </script>
+
 </body>
 </html>
