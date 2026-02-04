@@ -10,16 +10,19 @@
 </head>
 <body>
 
-<header class="cart_header">
-  <div class="header_left">
-    <a href="#" class="close"><i class="fas fa-xmark"></i></a>
+<header class="header_wrap">
+  <div class="header_left_group">
+    <a href="#" class="header_btn">
+      <i class="fas fa-xmark"></i>
+    </a>
     <span class="header_title">장바구니</span>
   </div>
-  <div class="header_right">
-    <a href="#" class="search"><i class="fas fa-magnifying-glass"></i></a>
-    <a href="#" class="home"><i class="fas fa-house"></i></a>
+  <div class="header_icons">
+    <a href="#"><i class="fas fa-magnifying-glass"></i></a>
+    <a href="#"><i class="fas fa-house"></i></a>
   </div>
 </header>
+
 <section class="delivery_info">
   <div class="delivery_tag">샛별배송</div>
   <div class="delivery_address">
@@ -202,29 +205,31 @@
 <script>
   document.addEventListener('DOMContentLoaded', () => {
 
-  /* 헤더 아이콘 */
-  const headerX = document.querySelector('.header_left a');
-  const headerSearch = document.querySelector('.header_right a:nth-child(1)');
-  const headerHome = document.querySelector('.header_right a:nth-child(2)');
+/* 헤더 아이콘 */
+const headerX = document.querySelector('.header_btn');
+const headerSearch = document.querySelector('.header_icons a:nth-child(1)');
+const headerHome = document.querySelector('.header_icons a:nth-child(2)');
 
-  headerX.addEventListener('click', () => {
+if (headerX) {
+  headerX.addEventListener('click', (e) => {
+    e.preventDefault();
     history.back();
   });
+}
 
-  headerSearch.addEventListener('click', () => {
-    location.href = 'search.html'; // 검색 페이지
+if (headerSearch) {
+  headerSearch.addEventListener('click', (e) => {
+    e.preventDefault();
+    location.href = 'search.html';
   });
+}
 
-  headerHome.addEventListener('click', () => {
-    location.href = 'home.html'; // 홈 페이지
+if (headerHome) {
+  headerHome.addEventListener('click', (e) => {
+    e.preventDefault();
+    location.href = 'home.html';
   });
-
-  const deliveryProgress = document.querySelector('.delivery_progress');
-  const deliveryText = document.querySelector('.delivery_text');
-  const totalPrice = document.querySelector('.total_price'); // total_pay 안에 span으로 숫자만
-  const freeDeliveryAmount = 40000;
-
-  let cartItems = document.querySelectorAll('.cart_item');
+}
 
   // 총액 계산
   function calculateTotal() {
