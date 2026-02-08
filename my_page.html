@@ -21,7 +21,7 @@
   <section class="welcome">
     <div class="welcome_left">
       <p class="welcome_text">
-        반가워요<span class="username" id="username">김미미</span>님!
+        반가워요<span class="username" id="username"></span>님!
       </p>
 
       <div class="address">
@@ -95,6 +95,7 @@
 
   <section class="menu_group">
     <div class="menu_block">
+      <!-- 1 -->
       <h4>쇼핑</h4>
       <ul>
         <li><a href="#">결제수단·컬리페이</a></li>
@@ -170,7 +171,7 @@
 
     <!-- 8 -->
     <div class="logout">
-      <a href="login.html">로그아웃</a>
+      <button id="logout_button">로그아웃</button>
     </div>
   </section>
 
@@ -192,11 +193,14 @@
       <i class="fa-regular fa-comments"></i>
       <span>라운지</span>
     </a>
-    <a href="my_page.html" class="nav_icon">
+    <a href="my_page.html" class="nav_icon nav_mypage">
       <i class="fa-regular fa-user"></i>
       <span>마이컬리</span>
     </a>
   </nav>
 </footer>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="js/script_all.js"></script>
+
 </body>
 </html>

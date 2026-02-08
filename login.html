@@ -21,7 +21,7 @@
   </div>
 
 
-  <form class="login_form" action="/login" method="POST">
+  <form class="login_form" action="login" method="POST">
     <div class="input_group">
       <input type="text" placeholder="아이디" id="username">
     </div>
@@ -40,7 +40,6 @@
     <button type="button" class="login_btn">로그인</button>
     <button type="button" class="signup_btn">회원가입</button>
 
-
   <div class="find_info">
     <button type="button">아이디 찾기</button>
     <span>|</span>
@@ -48,15 +47,16 @@
   </div>
 </form>
   <hr>
-
   <p class="social_text">네이버, 카카오로 <strong>간편하게</strong> 시작하세요</p>
     <div class="social_buttons">
       <button class="naver_btn"><img src="images/naver.jpg" alt="naver" width="30px" height="30px"> 네이버로 시작하기</button>
       <button class="kakao_btn"><img src="images/kakao.jpg" alt="kakao" width="30px" height="30px"> 카카오로 시작하기</button>
     </div>
   </div>
-  <script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="js/script_all.js"></script>
 
+  <script>
   // x 아이콘 터치 시 home으로 이동하기
   const closeBtn = document.querySelector('.close_btn');
   closeBtn.addEventListener('click', () => {
