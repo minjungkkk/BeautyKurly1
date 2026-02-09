@@ -21,7 +21,7 @@
   <section class="welcome">
     <div class="welcome_left">
       <p class="welcome_text">
-        반가워요<span class="username" id="username">김미미</span>님!
+        반가워요<span class="username" id="username"></span>님!
       </p>
 
       <div class="address">
@@ -105,7 +105,6 @@
       </ul>
     </div>
 
-    <!-- 2 -->
     <div class="menu_block">
       <h4>혜택</h4>
       <ul>
@@ -114,7 +113,6 @@
       </ul>
     </div>
 
-    <!-- 3 -->
     <div class="menu_block">
       <h4>계정관리</h4>
       <ul>
@@ -125,7 +123,6 @@
       </ul>
     </div>
 
-    <!-- 4 -->
     <div class="menu_block">
       <h4>고객센터</h4>
       <ul>
@@ -135,7 +132,6 @@
       </ul>
     </div>
 
-    <!-- 5 -->
     <div class="menu_block">
       <h4>이용안내</h4>
       <ul>
@@ -149,7 +145,6 @@
       </ul>
     </div>
 
-    <!-- 6 -->
     <div class="menu_block">
       <h4>기타</h4>
       <ul>
@@ -157,7 +152,6 @@
       </ul>
     </div>
 
-    <!-- 7 -->
     <div class="menu_block">
       <h4>
         앱 정보<span class="version">v3.65.1</span>
@@ -167,36 +161,39 @@
         <li><a href="#">공지사항</a></li>
       </ul>
     </div>
+    <!-- menu_block -->
 
-    <!-- 8 -->
     <div class="logout">
-      <a href="login.html">로그아웃</a>
+      <button id="logout_button">로그아웃</button>
     </div>
   </section>
+    <!-- logout -->
 
   <footer>
-  <nav class="bottom_nav">
-    <a href="index.html" class="nav_icon">
-      <i class="fas fa-bars"></i>
-      <span>카테고리</span>
-    </a>
-    <a href="search.html" class="nav_icon">
-      <i class="fa-solid fa-magnifying-glass"></i>
-      <span>검색</span>
-    </a>
-    <a href="home.html" class="nav_icon active">
-      <i class="fa-solid fa-house"></i>
-      <span>홈</span>
-    </a>
-    <a href="lounge.html" class="nav_icon">
-      <i class="fa-regular fa-comments"></i>
-      <span>라운지</span>
-    </a>
-    <a href="my_page.html" class="nav_icon">
-      <i class="fa-regular fa-user"></i>
-      <span>마이컬리</span>
-    </a>
-  </nav>
-</footer>
+    <nav class="bottom_nav">
+      <a href="index.html" class="nav_icon">
+        <i class="fas fa-bars"></i>
+        <span>카테고리</span>
+      </a>
+      <a href="search.html" class="nav_icon">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <span>검색</span>
+      </a>
+      <a href="home.html" class="nav_icon active">
+        <i class="fa-solid fa-house"></i>
+        <span>홈</span>
+      </a>
+      <a href="lounge.html" class="nav_icon">
+        <i class="fa-regular fa-comments"></i>
+        <span>라운지</span>
+      </a>
+      <a href="my_page.html" class="nav_icon nav_mypage">
+        <i class="fa-regular fa-user"></i>
+        <span>마이컬리</span>
+      </a>
+    </nav>
+  </footer>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="js/script_all.js"></script>
 </body>
 </html>

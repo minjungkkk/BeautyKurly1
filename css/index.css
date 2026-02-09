@@ -10,10 +10,7 @@ body {font-family: normal 16px/1.5em  'Pretendard', sans-serif;  background-colo
 .header_icons {display: flex; align-items: center;}
 .header_icons i {font-size: 20px; margin-left: 16px; line-height: 1; color: #000;}
 
-
-
 .quick_menu {padding: 12px 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-around; align-items: center; cursor: pointer;}
-
 .quick_icon { flex: 1; text-align: center; padding: 8px 0; font-size: 12px;}
 .quick_icon:hover {transform: translateY(-1px);}
 .quick_icon i {font-size: 24px; margin-bottom: 10px;}
@@ -41,9 +38,7 @@ body {font-family: normal 16px/1.5em  'Pretendard', sans-serif;  background-colo
 .category_sub li .sub {list-style: none; margin: 0; padding: 0 0 15px 0;}
 .category_sub li .sub li a {padding: 10px 0; font-size: 14px; color: #555; line-height: 2.5em; text-decoration: none;}
 
-
 .bottom_nav {position: fixed; bottom: 0; width: 100%; display: flex; border-top: 1px solid #ddd; background-color: #fff; cursor: pointer; padding: 0;}
-
 .bottom_nav a { flex: 1; text-align: center; padding: 8px 0; font-size: 11px; text-decoration: none;  color: inherit; display: flex; flex-direction: column; align-items: center; justify-content: center;}
 
 .nav_icon i { font-size: 18px; margin-bottom: 4px; color: #333;}

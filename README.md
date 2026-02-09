@@ -1,10 +1,6 @@
-# UI 구현 및 정보 구조(IA) 명세서
 
-본 문서는
-
-## 1. 프로젝트 디렉토리 구조(Directory Tree)
 ```
-프로젝트명 : Beauty Kurly(리뉴얼)
+UI구현
 ├─ Beauty Kurly.jpg
 ├─ cart.html
 ├─ css
@@ -14,7 +10,8 @@
 │  ├─ login.css
 │  ├─ my_page.css
 │  ├─ product_list.css
-│  └─ reset.css
+│  ├─ reset.css
+│  └─ style.css
 ├─ home.html
 ├─ images
 │  ├─ cart_in1.jpg
@@ -48,6 +45,7 @@
 │  ├─ home_Mbanner9.jpg
 │  ├─ kakao.jpg
 │  ├─ logo.jpg
+│  ├─ logo.svg
 │  ├─ naver.jpg
 │  ├─ pro1.jpg
 │  ├─ pro10.jpg
@@ -61,23 +59,13 @@
 │  └─ pro9.jpg
 ├─ index.html
 ├─ js
-│  ├─ script_home.js
-│  └─ script_login.js
+│  ├─ script_all.js
+│  └─ script_home.js
 ├─ login.html
 ├─ lounge.html
 ├─ my_page.html
 ├─ product_list.html
-└─ search.html
+├─ search.html
+└─ signup.html
 
 ```
-
-## 2. 정보 구조(IA) 및 기능 매핑
-| 파일/폴더명 | 정보 구조상 역할 | 주요 구현 기능 |
-
-## 3. 구조 설계 원칙
-* **볼드체** : 입력
-* *기울임*
-* ~~취소선~~ 
-- 1
-- 2
-  - 2-2
